@@ -5,6 +5,7 @@ public class Main {
         System.out.println("Добро пожаловать в игру !");
         System.out.println("№ 1: Найди число ( FindNumber )");
         System.out.println("№ 2: Угадаю день рождение ( FindBirthday )");
+        System.out.println("№ 3: Математика ( Math )");
 
         System.out.print("Напишите одно из них: ");
         boolean hasSelectedGame = false;
@@ -12,14 +13,20 @@ public class Main {
 
         while (!hasSelectedGame) {
             String UserSelected = Selected.next();
-            if (UserSelected.equals("FindNumber")) {
-                gameOne();
-                hasSelectedGame = true;
-            } else if (UserSelected.equals("FindBirthday")) {
-                gameTwo();
-                hasSelectedGame = true;
-            } else {
-                System.out.print("Напишите правильно");
+            switch (UserSelected) {
+                case "FindNumber" -> {
+                    gameOne();
+                    hasSelectedGame = true;
+                }
+                case "FindBirthday" -> {
+                    gameTwo();
+                    hasSelectedGame = true;
+                }
+                case "Math" -> {
+                    gameThree();
+                    hasSelectedGame = true;
+                }
+                default -> System.out.print("Напишите правильно");
             }
         }
     }
@@ -66,4 +73,22 @@ public class Main {
             System.out.println("Твой день рождения " + day + " число!");
             scanner.close();
         }
+
+        public static void gameThree() {
+        boolean hasGuessed = false;
+
+        while(!hasGuessed){
+            int randomNumberOne = (int) (Math.random() * 10) + 1;
+            int randomNumberTwo = (int) (Math.random() * 10) + 1;
+            System.out.println("Привет сколько будет " + randomNumberOne + " " + "+" + " " + randomNumberTwo);
+            Scanner input = new Scanner(System.in);
+            int guess = input.nextInt();
+            if(guess == randomNumberTwo + randomNumberOne){
+                System.out.println("Правильно");
+                hasGuessed = true;
+            }else {
+                System.out.println("Не правильно");
+            }
+        }
+    }
 }
